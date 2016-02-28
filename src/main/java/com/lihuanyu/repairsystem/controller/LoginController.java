@@ -1,7 +1,11 @@
 package com.lihuanyu.repairsystem.controller;
 
+import com.google.gson.Gson;
 import com.lihuanyu.repairsystem.conflg.DevConfig;
+import com.lihuanyu.repairsystem.service.SaveSessionService;
+import com.lihuanyu.repairsystem.session.SessionUser;
 import com.lihuanyu.repairsystem.util.MCrypt;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,10 +17,18 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 public class LoginController {
 
+    @Autowired
+    private SaveSessionService saveSessionService;
+
     @RequestMapping(value = "/",method = RequestMethod.GET,params = "verify_request")
     public String repariSystem(String verify_request) throws Exception{
         MCrypt mCrypt = new MCrypt();
         String output = new String(mCrypt.decrypt(verify_request));
+        Gson gson = new Gson();
+        SessionUser sessionUser = gson.fromJson(output, SessionUser.class);
+        
+        saveSessionService.saveSession(sessionUser);
+
         return output;
     }
 
