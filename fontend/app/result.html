@@ -3,7 +3,7 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="utf-8">
-  <title>石大易班在线报修</title>
+  <title>报修结果</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -53,30 +53,14 @@
     </div><!--/.container-fluid -->
   </nav>
 
-  <div class="jumbotron" style="padding: 20px 40px;">
-    <h3>我要报修</h3>
-    <p class="lead"><span th:text="${username}">用户名</span>,欢迎使用石大易班提供的在线报修工具,便捷你的校园生活.</p>
-    <p><a class="btn btn-lg btn-success" href="/create">报修 <span class="glyphicon glyphicon-ok"></span></a></p>
-  </div>
-
-  <div>
-    <h2>报修列表</h2>
-    <table class="table">
-      <thead>
-      <tr>
-        <th>序号</th>
-        <th>报修人昵称</th>
-        <th>报修状态</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td>测试id</td>
-        <td>测试昵称</td>
-        <td>未确认</td>
-      </tr>
-      </tbody>
-    </table>
+  <div class="jumbotron">
+    <h3>报修结果</h3>
+    <p class="lead" th:if="${result}=='success'" th:text="恭喜成功提交报修请求.">测试文字</p>
+    <p class="lead" th:if="${result}=='false'" th:text="失败了,请返回检查填写的内容,若频繁出现,可能是程序出错,有空的话请向石大易班发展中心反馈"></p>
+    <p>
+      <a href="/" class="btn btn-success" th:if="${result}=='success'">返回首页</a>
+      <a th:if="${result}=='false'" class="btn btn-danger" href="javascript:history.go(-1);">返回</a>
+    </p>
   </div>
 
   <div class="footer">

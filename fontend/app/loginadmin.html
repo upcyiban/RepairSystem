@@ -3,7 +3,7 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="utf-8">
-  <title>石大易班在线报修</title>
+  <title>管理界面登陆</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -30,7 +30,6 @@
 
 
 <div class="container">
-
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
@@ -45,7 +44,7 @@
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li class="active"><a href="#">Home</a></li>
+          <li><a href="/">Home</a></li>
           <li><a href="about">About</a></li>
           <li><a href="contact">Contact</a></li>
         </ul>
@@ -53,30 +52,24 @@
     </div><!--/.container-fluid -->
   </nav>
 
-  <div class="jumbotron" style="padding: 20px 40px;">
-    <h3>我要报修</h3>
-    <p class="lead"><span th:text="${username}">用户名</span>,欢迎使用石大易班提供的在线报修工具,便捷你的校园生活.</p>
-    <p><a class="btn btn-lg btn-success" href="/create">报修 <span class="glyphicon glyphicon-ok"></span></a></p>
-  </div>
-
-  <div>
-    <h2>报修列表</h2>
-    <table class="table">
-      <thead>
-      <tr>
-        <th>序号</th>
-        <th>报修人昵称</th>
-        <th>报修状态</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td>测试id</td>
-        <td>测试昵称</td>
-        <td>未确认</td>
-      </tr>
-      </tbody>
-    </table>
+  <div class="jumbotron">
+    <h2>管理员登陆</h2>
+    <p class="lead">注:注意账号密码安全!.</p>
+    <div style="text-align: center">
+      <form action="/adminlogin" method="post">
+        <div class="form-inline">
+          <label for="username">账号:</label>
+          <input type="text" name="username" id="username" class="form-control">
+        </div>
+        <br/>
+        <div class="form-inline">
+          <label for="password">密码:</label>
+          <input type="password" name="password" id="password" class="form-control">
+        </div>
+        <br/>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
   </div>
 
   <div class="footer">
