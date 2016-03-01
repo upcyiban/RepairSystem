@@ -24,8 +24,10 @@ public class RepairController {
 
     @RequestMapping("/create")
     public String create(Model model){
+        RepairList repairList = new RepairList();
         String username = (String) httpSession.getAttribute("username");
         int userid = (int) httpSession .getAttribute("userid");
+        repairListDao.save(repairList);
         model.addAttribute("username",username);
         model.addAttribute("userid",userid);
         return "create";

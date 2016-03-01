@@ -44,8 +44,10 @@ public class AdminController {
         model.addAttribute("repairList", repairList);
         String state = null;
         if (repairList.getState() == 0) {
-            state = "未维修";
+            state = "未确认";
         } else if (repairList.getState() == 1) {
+            state = "已确认";
+        }else f(repairList.getState()==2){
             state = "已维修";
         }
         model.addAttribute("state", state);
@@ -54,9 +56,13 @@ public class AdminController {
 
     @RequestMapping(value = "/cheack",method = RequestMethod.POST)
     public String cheack(int id,String pass,Model model){
-        if (pass.equals("已维修")){
+        if (pass.equals("确认")){
             RepairList repairList = repairListDao.findById(id);
             repairList.setState(1);
+            repairListDao.save(repairList);
+        }else if(pass.equals("维修")){
+            RepairList repairList = repairListDao.findById(id);
+            repairList.setState(2);
             repairListDao.save(repairList);
         }else if(pass.equals("删除")){
             repairListDao.delete(id);
