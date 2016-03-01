@@ -53,30 +53,15 @@
     </div><!--/.container-fluid -->
   </nav>
 
-  <div class="jumbotron" style="padding: 20px 40px;">
-    <h3>我要报修</h3>
-    <p class="lead"><span th:text="${username}">用户名</span>,欢迎使用石大易班提供的在线报修工具,便捷你的校园生活.</p>
-    <p><a class="btn btn-lg btn-success" href="/create">报修 <span class="glyphicon glyphicon-ok"></span></a></p>
-  </div>
-
-  <div>
-    <h2>报修列表</h2>
-    <table class="table">
-      <thead>
-      <tr>
-        <th>序号</th>
-        <th>报修人昵称</th>
-        <th>报修状态</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td>测试id</td>
-        <td>测试昵称</td>
-        <td>未确认</td>
-      </tr>
-      </tbody>
-    </table>
+  <div class="jumbotron">
+    <h3>创建维修请求</h3>
+    <p class="lead">报修人:<span th:text="${username}">用户名</span> &nbsp;&nbsp;&nbsp;易班id:<span>用户id</span></p>
+    <form class="form">
+      <div class="form-group">
+        <label>注:请填写详细的报修信息,楼号单元号层数房间号,损坏物品类型.</label>
+        <textarea class="form-control" rows="5" id="message"></textarea>
+      </div>
+    </form>
   </div>
 
   <div class="footer">
