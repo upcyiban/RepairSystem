@@ -24,21 +24,26 @@ public class RepairController {
 
     @RequestMapping("/create")
     public String create(Model model){
-        RepairList repairList = new RepairList();
         String username = (String) httpSession.getAttribute("username");
         int userid = (int) httpSession .getAttribute("userid");
-        repairListDao.save(repairList);
         model.addAttribute("username",username);
         model.addAttribute("userid",userid);
         return "create";
     }
 
     @RequestMapping(value = "/save",method = RequestMethod.POST)
-    public String save(String message){
+    public String save(String message,Model model){
+        if (message==null){
+            model.addAttribute("result","false");
+            return "result";
+        }
         RepairList repairList = new RepairList();
+        repairList.setYibananme((String) httpSession.getAttribute("username"));
+        repairList.setYibanid((Integer) httpSession.getAttribute("userid"));
         repairList.setMessage(message);
         repairList.setState(0);
         repairListDao.save(repairList);
+        model.addAttribute("result","success");
         return "result";
     }
 }
