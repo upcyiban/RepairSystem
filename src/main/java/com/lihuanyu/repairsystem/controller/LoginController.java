@@ -6,17 +6,17 @@ import com.lihuanyu.repairsystem.service.SaveSessionService;
 import com.lihuanyu.repairsystem.session.SessionUser;
 import com.lihuanyu.repairsystem.util.MCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 
 /**
  * Created by echao on 2016/2/28.
  */
-@RestController
+@Controller
 public class LoginController {
 
     @Autowired
@@ -32,17 +32,16 @@ public class LoginController {
         Gson gson = new Gson();
         SessionUser sessionUser = gson.fromJson(output, SessionUser.class);
         saveSessionService.saveSession(sessionUser);
-        return output;
+        return "redirect:/";
     }
 
     @RequestMapping(value = "/",method = RequestMethod.GET)
-    public ModelAndView testOauth(){
-        String userid = (String) httpsession.getAttribute("userid");
-        if(userid!=null){
-            ModelAndView mv1 = new ModelAndView("index");
-            return mv1;
+    public String testOauth(Model model){
+        String username = (String) httpsession.getAttribute("username");
+        if(username!=null){
+            model.addAttribute("username",username);
+            return "index";
         }
-        ModelAndView mv = new ModelAndView("redirect:https://openapi.yiban.cn/oauth/authorize?client_id="+ DevConfig.client_id + "&redirect_uri=" + DevConfig.redirect_uri);
-        return mv;
+        return "redirect:https://openapi.yiban.cn/oauth/authorize?client_id="+ DevConfig.client_id + "&redirect_uri=" + DevConfig.redirect_uri;
     }
 }
