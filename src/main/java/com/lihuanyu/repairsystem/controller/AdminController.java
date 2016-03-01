@@ -47,7 +47,7 @@ public class AdminController {
             state = "未确认";
         } else if (repairList.getState() == 1) {
             state = "已确认";
-        }else f(repairList.getState()==2){
+        }else if(repairList.getState()==2){
             state = "已维修";
         }
         model.addAttribute("state", state);
