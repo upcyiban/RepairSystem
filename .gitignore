@@ -26,3 +26,4 @@ hs_err_pid*
 repairsystem.iml
 .idea
 ProductConfig.java
+src/main/resources/application-production.yml
