@@ -20,55 +20,37 @@ public class AdminController {
 
     @RequestMapping("/admin")
     public String showAdmin() {
-        return "admin";
+        return "loginadmin";
     }
 
-    @RequestMapping(value = "/adminLogin", method = RequestMethod.POST)
+    @RequestMapping(value = "/adminlogin", method = RequestMethod.POST)
     public String login(String username, String password, Model model) {
         if (username.equals(DevConfig.adminUsername) && password.equals(DevConfig.admiPassword)) {
             Iterable<RepairList> repairList = repairListDao.findAll();
             model.addAttribute("adminLists", repairList);
-            return "message";
+            return "admin";
         } else {
             String result = "出错了！";
-            String word = "账号到期或密码有误";
+            String word = "账号或密码有误";
             model.addAttribute("tittle", result);
             model.addAttribute("word", word);
             return "message";
         }
     }
 
-    @RequestMapping("/detail")
-    public String showDetail(int yibanid, Model model) {
-        RepairList repairList = repairListDao.findByYibanid(yibanid);
-        model.addAttribute("repairList", repairList);
-        String state = null;
-        if (repairList.getState() == 0) {
-            state = "未确认";
-        } else if (repairList.getState() == 1) {
-            state = "已确认";
-        }else if(repairList.getState()==2){
-            state = "已维修";
-        }
-        model.addAttribute("state", state);
-        return "detail";
-    }
-
-    @RequestMapping(value = "/cheack",method = RequestMethod.POST)
+    @RequestMapping(value = "/check",method = RequestMethod.POST)
     public String cheack(int id,String pass,Model model){
+        RepairList repairList = repairListDao.findById(id);
         if (pass.equals("确认")){
-            RepairList repairList = repairListDao.findById(id);
             repairList.setState(1);
-            repairListDao.save(repairList);
-        }else if(pass.equals("维修")){
-            RepairList repairList = repairListDao.findById(id);
+        }else if(pass.equals("暂不能处理")){
             repairList.setState(2);
-            repairListDao.save(repairList);
-        }else if(pass.equals("删除")){
-            repairListDao.delete(id);
+        }else if(pass.equals("已处理")){
+            repairList.setState(3);
         }
-        Iterable<RepairList> repairList = repairListDao.findAll();
-        model.addAttribute("adminLists",repairList);
+        repairListDao.save(repairList);
+        Iterable<RepairList> repairLists = repairListDao.findAll();
+        model.addAttribute("adminLists",repairLists);
         return "admin";
     }
 }
