@@ -66,14 +66,14 @@
       <tr>
         <th>序号</th>
         <th>报修人昵称</th>
-        <th>报修状态</th>
+        <th>状态</th>
       </tr>
       </thead>
       <tbody>
-      <tr>
-        <td>测试id</td>
-        <td>测试昵称</td>
-        <td>未确认</td>
+      <tr th:each="repairList:${repairLists}">
+        <td th:text="${repairList.id}">测试id</td>
+        <td th:text="${repairList.yibanname}">测试昵称</td>
+        <td><span th:if="${repairList.state}==0">未确认</span><span th:if="${repairList.state}==1">已确认</span><span th:if="${repairList.state}==2">暂时无法处理</span><span th:if="${repairList.state}==3">已处理</span></td>
       </tr>
       </tbody>
     </table>
