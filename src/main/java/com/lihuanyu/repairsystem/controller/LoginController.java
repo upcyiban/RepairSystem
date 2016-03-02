@@ -44,8 +44,8 @@ public class LoginController {
     public String testOauth(Model model){
         String username = (String) httpsession.getAttribute("username");
         if(username!=null){
-            Iterable<RepairList> repairList = repairListDao.findByYibanname(username);
-            model.addAttribute("repairList",repairList);
+            Iterable<RepairList> repairLists = repairListDao.findByYibanname(username);
+            model.addAttribute("repairLists",repairLists);
             model.addAttribute("username",username);
             return "index";
         }
