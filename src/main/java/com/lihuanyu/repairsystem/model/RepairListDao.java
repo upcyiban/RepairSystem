@@ -8,4 +8,5 @@ import org.springframework.data.repository.CrudRepository;
 public interface RepairListDao extends CrudRepository<RepairList,Integer>{
     public  RepairList findByYibanid(int yibanid);
     public RepairList findById(int  id);
+    public  Iterable<RepairList> findByYibanname(String yibanname);
 }

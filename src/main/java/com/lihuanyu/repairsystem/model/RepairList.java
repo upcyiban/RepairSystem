@@ -12,7 +12,7 @@ public class RepairList {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private int yibanid;
-    private String yibananme;
+    private String yibanname;
     private String message;
 
     public int getId() {
@@ -31,14 +31,6 @@ public class RepairList {
         this.yibanid = yibanid;
     }
 
-    public String getYibananme() {
-        return yibananme;
-    }
-
-    public void setYibananme(String yibananme) {
-        this.yibananme = yibananme;
-    }
-
     public String getMessage() {
         return message;
     }
@@ -49,6 +41,13 @@ public class RepairList {
 
     public int getState() {
         return state;
+    }
+    public String getYibanname() {
+        return yibanname;
+    }
+
+    public void setYibanname(String yibanname) {
+        this.yibanname = yibanname;
     }
 
     public void setState(int state) {

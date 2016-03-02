@@ -2,6 +2,8 @@ package com.lihuanyu.repairsystem.controller;
 
 import com.google.gson.Gson;
 import com.lihuanyu.repairsystem.conflg.DevConfig;
+import com.lihuanyu.repairsystem.model.RepairList;
+import com.lihuanyu.repairsystem.model.RepairListDao;
 import com.lihuanyu.repairsystem.service.SaveSessionService;
 import com.lihuanyu.repairsystem.session.SessionUser;
 import com.lihuanyu.repairsystem.util.MCrypt;
@@ -25,6 +27,9 @@ public class LoginController {
     @Autowired
     private HttpSession httpsession;
 
+    @Autowired
+    private RepairListDao repairListDao;
+
     @RequestMapping(value = "/",method = RequestMethod.GET,params = "verify_request")
     public String repariSystem(String verify_request) throws Exception{
         MCrypt mCrypt = new MCrypt();
@@ -39,6 +44,8 @@ public class LoginController {
     public String testOauth(Model model){
         String username = (String) httpsession.getAttribute("username");
         if(username!=null){
+            Iterable<RepairList> repairList = repairListDao.findByYibanname(username);
+            model.addAttribute("repairList",repairList);
             model.addAttribute("username",username);
             return "index";
         }

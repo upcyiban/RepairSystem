@@ -38,7 +38,7 @@ public class RepairController {
             return "result";
         }
         RepairList repairList = new RepairList();
-        repairList.setYibananme((String) httpSession.getAttribute("username"));
+        repairList.setYibanname((String) httpSession.getAttribute("username"));
         repairList.setYibanid((Integer) httpSession.getAttribute("userid"));
         repairList.setMessage(message);
         repairList.setState(0);
