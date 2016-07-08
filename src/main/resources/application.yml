@@ -2,9 +2,9 @@ spring:
   thymeleaf:
       mode: LEGACYHTML5
   datasource:
-    url: jdbc:mysql://121.42.201.69:3306/yibantest_repair
-    username: yiban
-    password: yiban
+    url: jdbc:mysql://121.251.255.96:3306/yibantest_repair
+    username: yibantest
+    password: yibantest
   jpa:
     show-sql: true
     hibernate:
@@ -14,4 +14,4 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5Dialect
 server:
-  port: 8081
+  port: 8080

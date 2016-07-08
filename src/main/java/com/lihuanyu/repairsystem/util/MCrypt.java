@@ -4,7 +4,6 @@ package com.lihuanyu.repairsystem.util;
  * Created by echao on 2016/2/28.
  */
 import com.lihuanyu.repairsystem.conflg.DevConfig;
-import com.lihuanyu.repairsystem.conflg.ProductConfig;
 
 import javax.crypto.Cipher;
 import javax.crypto.NoSuchPaddingException;

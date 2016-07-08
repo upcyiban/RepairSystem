@@ -2,7 +2,6 @@ package com.lihuanyu.repairsystem.controller;
 
 import com.google.gson.Gson;
 import com.lihuanyu.repairsystem.conflg.DevConfig;
-import com.lihuanyu.repairsystem.conflg.ProductConfig;
 import com.lihuanyu.repairsystem.model.RepairList;
 import com.lihuanyu.repairsystem.model.RepairListDao;
 import com.lihuanyu.repairsystem.service.SaveSessionService;

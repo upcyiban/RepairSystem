@@ -4,9 +4,9 @@ package com.lihuanyu.repairsystem.conflg;
  * Created by echao on 2016/2/28.
  */
 public class DevConfig {
-    public static String client_id = "ae4a014d9e91e119";
-    public static String redirect_uri = "http://f.yiban.cn/iapp28905";
-    public static String AppSecret = "acba6316e2bda87a6be52bb9e5a5e215";
+    public static String client_id = "07f11a3f2773e24e";
+    public static String redirect_uri = "http://f.yiban.cn/iapp28401";
+    public static String AppSecret = "13e9bf919a795dee0f9d438c4dc8928d";
 
     public static String adminUsername = "admin";
     public static String admiPassword = "admin";
